@@ -1,0 +1,93 @@
+{
+  "summary": {
+    "id": "d9a0a6cb-9e11-4b94-9a61-f88f6cb91efb",
+    "title": "Water Treatment Web Interface - Simple DFD",
+    "owner": "Student",
+    "description": "Minimal DFD for Threat Dragon import. External User -> Web UI -> SCADA Server -> Historian. Includes a DMZ boundary.",
+    "version": "2.0",
+    "created": 1730280000000,
+    "lastUpdated": 1730280000000
+  },
+  "detail": {
+    "threats": [],
+    "diagrams": [
+      {
+        "id": "bb4dfaea-3c70-46ad-86af-24859e3e3a5c",
+        "title": "DFD 1",
+        "diagramType": "DFD",
+        "cells": [
+          {
+            "type": "tm.Boundary",
+            "id": "bb1c4497-cd2c-4c8b-8c6b-8b13e34e4284",
+            "z": 1,
+            "position": { "x": 240, "y": 20 },
+            "size": { "width": 460, "height": 300 },
+            "attrs": {
+              "label": { "text": "DMZ" },
+              "body": { "stroke": "#000000", "strokeDasharray": "5,5", "fill": "none" }
+            }
+          },
+          {
+            "type": "tm.Actor",
+            "id": "798e4c44-5b5b-4cc7-8a1d-77fbd1dbe8ab",
+            "z": 2,
+            "position": { "x": 20, "y": 120 },
+            "size": { "width": 100, "height": 60 },
+            "attrs": { "label": { "text": "Internet User" } }
+          },
+          {
+            "type": "tm.Process",
+            "id": "6d935d73-b798-4af8-bb1e-3b0a15a2fa8d",
+            "z": 3,
+            "position": { "x": 280, "y": 120 },
+            "size": { "width": 140, "height": 70 },
+            "parent": "bb1c4497-cd2c-4c8b-8c6b-8b13e34e4284",
+            "attrs": { "label": { "text": "Web Interface" } }
+          },
+          {
+            "type": "tm.Process",
+            "id": "b9f08e60-3f32-4b2e-b9b0-c7a59cf57c47",
+            "z": 3,
+            "position": { "x": 480, "y": 120 },
+            "size": { "width": 160, "height": 70 },
+            "parent": "bb1c4497-cd2c-4c8b-8c6b-8b13e34e4284",
+            "attrs": { "label": { "text": "SCADA Server" } }
+          },
+          {
+            "type": "tm.Store",
+            "id": "b8f0f95b-cac8-46a9-8b45-1569d9f26d19",
+            "z": 3,
+            "position": { "x": 520, "y": 220 },
+            "size": { "width": 140, "height": 70 },
+            "parent": "bb1c4497-cd2c-4c8b-8c6b-8b13e34e4284",
+            "attrs": { "label": { "text": "Historian DB" } }
+          },
+          {
+            "type": "tm.Flow",
+            "id": "0e87a2e3-9206-4d6f-9b52-7a7a34e9b6a2",
+            "z": 4,
+            "source": { "cell": "798e4c44-5b5b-4cc7-8a1d-77fbd1dbe8ab" },
+            "target": { "cell": "6d935d73-b798-4af8-bb1e-3b0a15a2fa8d" },
+            "labels": [ { "attrs": { "text": { "text": "HTTPS" } } } ]
+          },
+          {
+            "type": "tm.Flow",
+            "id": "6b528a6f-28b9-46de-beb4-c52b4b2863f7",
+            "z": 4,
+            "source": { "cell": "6d935d73-b798-4af8-bb1e-3b0a15a2fa8d" },
+            "target": { "cell": "b9f08e60-3f32-4b2e-b9b0-c7a59cf57c47" },
+            "labels": [ { "attrs": { "text": { "text": "API Calls" } } } ]
+          },
+          {
+            "type": "tm.Flow",
+            "id": "cb2e391b-cd86-4375-b20a-4e968f2797e3",
+            "z": 4,
+            "source": { "cell": "b9f08e60-3f32-4b2e-b9b0-c7a59cf57c47" },
+            "target": { "cell": "b8f0f95b-cac8-46a9-8b45-1569d9f26d19" },
+            "labels": [ { "attrs": { "text": { "text": "Telemetry/Logs" } } } ]
+          }
+        ]
+      }
+    ]
+  }
+}
